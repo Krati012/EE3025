@@ -50,13 +50,13 @@ plt.subplot(2, 1, 1)
 plt.plot(x)
 plt.title('Digital Filter Input-Output')
 plt.ylabel('$x(n)$')
-plt.grid()
+plt.grid() #minor
 
 plt.subplot(2, 1, 2)
 plt.plot(y)
 plt.xlabel('$n$')
 plt.ylabel('$y(n)$')
-plt.grid()
+plt.grid() #minor
 
 #If using termux
 plt.savefig('..figs/x_y.pdf')
