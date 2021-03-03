@@ -44,7 +44,7 @@ y = circ_conv(x,h)   #np.convolve results in linear convolution
 sf.write('Sound_conv.wav', y, fs)
 #subplots
 plt.plot(y)
-plt.title('Output signal')
+plt.title('Filter output signal using convolution')
 plt.xlabel('$n$')
 plt.ylabel('$y(n)$')
 plt.grid()# minor
