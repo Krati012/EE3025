@@ -25,6 +25,7 @@ cutoff_freq = 4000.0
 Wn = 2*cutoff_freq/samp_freq
 b,a = signal.butter(order,Wn,'low')
 
+#y(n-k) = h(n-k) for all k=0,1,2,3,4, so we use the same expression as y(n)
 hn = np.zeros(n)
 hn[0] = (b[0]/a[0])
 hn[1] = (1/a[0])*(b[1]-a[1]*hn[0])
