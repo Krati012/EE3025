@@ -23,9 +23,16 @@ sampl_freq = fs
 order = 4
 cutoff_freq = 4000.0
 Wn = 2*cutoff_freq/sampl_freq
-
+#print(x.shape)
 b,a = signal.butter(order, Wn, 'low')
+#print(b.shape, a.shape)
 
+'''
+Rearranging the linear constant-coefficient difference equation, we have the 
+following equation to get an expression for the current output sample y(n) :
+y(n) = (1/a(1)) * ( b(1)*x(n) + b(2)*x(n-1) + ... + b(nb+1)*x(n-nb)
+                               - a(2)*y(n-1) - ... - a(na+1)*y(n-na) )
+'''
 y[0] = (b[0]/a[0])*x[0]
 y[1] = (1/a[0])*(b[0]*x[1]+b[1]*x[0] - a[1]*y[0])
 y[2] = (1/a[0])*(b[0]*x[2]+b[1]*x[1]+b[2]*x[0]- 
@@ -50,13 +57,13 @@ plt.subplot(2, 1, 1)
 plt.plot(x)
 plt.title('Digital Filter Input-Output')
 plt.ylabel('$x(n)$')
-plt.grid() #minor
+plt.grid()
 
 plt.subplot(2, 1, 2)
 plt.plot(y)
 plt.xlabel('$n$')
 plt.ylabel('$y(n)$')
-plt.grid() #minor
+plt.grid()
 
 #If using termux
 plt.savefig('..figs/x_y.pdf')
@@ -65,3 +72,4 @@ subprocess.run(shlex.split("termux-open ../figs/x_y.pdf"))
 
 #else
 #plt.show()
+
